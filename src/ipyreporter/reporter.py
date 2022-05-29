@@ -1,7 +1,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Iterator
 
-from reporter_item import ReporterItem
+from .reporter_item import ReporterItem
 
 
 class Reporter(MutableMapping):
@@ -50,7 +50,7 @@ class Reporter(MutableMapping):
         return self._item_dict.__len__()
 
     def __iter__(self) -> Iterator[Any]:
-        return ((key, item.value) for key, item in self._item_dict.items())
+        return ((key, item.value, item.units, item.desc) for key, item in self._item_dict.items())
 
     def update(*args, **kwargs) -> None:
         raise NotImplementedError
